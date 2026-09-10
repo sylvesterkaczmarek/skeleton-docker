@@ -1,5 +1,7 @@
 # Official Docker images are in the form library/<app> while non-official
 # images are in the form <user>/<app>.
+# Use Amazon ECR pull-through cache.  For more info, see:
+# https://docs.aws.amazon.com/AmazonECR/latest/userguide/pull-through-cache.html#pull-through-cache-considerations
 FROM public.ecr.aws/docker/library/python:3.14.7-alpine3.24 AS compile-stage
 
 ###
@@ -51,6 +53,8 @@ RUN pipenv install --clear --deploy --extra-pip-args="--no-cache-dir" --verbose
 
 # Official Docker images are in the form library/<app> while non-official
 # images are in the form <user>/<app>.
+# Use Amazon ECR pull-through cache.  For more info, see:
+# https://docs.aws.amazon.com/AmazonECR/latest/userguide/pull-through-cache.html#pull-through-cache-considerations
 FROM public.ecr.aws/docker/library/python:3.14.7-alpine3.24 AS build-stage
 
 ###
